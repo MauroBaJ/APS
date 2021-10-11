@@ -79,7 +79,6 @@
     <?php
         endforeach;
     ?>
-
     <div class="form-floating">
       <input type="email" name="email" class="form-control" id="email" placeholder="correo@email.com">
       <label for="email">Direccion de Correo</label>
