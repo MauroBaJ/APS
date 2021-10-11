@@ -1,0 +1,33 @@
+.my-footer{
+    background-color: rgb(44, 44, 44);
+    height: auto;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+
+    position: absolute;
+    bottom: 0;
+
+    p, a{
+        color: white;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    @include desktop{
+        display: grid;
+        grid-template-columns: 1fr, 1fr;
+        grid-template-rows: 1fr 1fr;
+        padding: 1rem;
+
+        p{
+            grid-row: 1/2;
+        }
+        a{
+            grid-column: 1/3;
+        }
+    }
+    
+}

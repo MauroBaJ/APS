@@ -1,0 +1,53 @@
+.formulario {
+
+    width: 95%;
+    background-color: #d1e6e6;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.2));
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        label {
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        input{
+            display: block;
+
+            &:last-of-type{
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .line{
+        background: rgba(0,0,0,0.7);
+        height: 1px;
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .radio{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        label{
+            margin: 0 5px;
+        }
+        input{
+            label{
+                margin: 0 5px;
+            }
+        }
+    }
+}
