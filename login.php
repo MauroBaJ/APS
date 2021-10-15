@@ -8,6 +8,7 @@
 
     $errores = [];
 
+
     // Autenticar
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // echo '<pre>';
@@ -25,8 +26,9 @@
             $query = "SELECT * FROM Administradores WHERE email = '${email}'";
             $resultado = mysqli_query($db, $query);
 
-            $query2 = "SELECT * FROM Usuarios WHERE email = '${email}'";
+            $query2 = "SELECT * FROM Usuario WHERE email = '${email}'";
             $resultado2 = mysqli_query($db, $query2);
+
 
             if($resultado->num_rows){
                 $usuario = mysqli_fetch_assoc($resultado);
@@ -34,7 +36,7 @@
 
                 //Verificar password
                 $auth = password_verify($password, $usuario['Password']);
-                
+
                 if($auth){
                   mysqli_close($db);
                   iniciarSesion(true, $usuario);                
@@ -42,6 +44,8 @@
                 else $errores[] = 'Password incorrecto';
             } 
             else if($resultado2->num_rows){
+
+
 
                  $usuario = mysqli_fetch_assoc($resultado2) ;
                  $auth = password_verify($password, $usuario['Password']);

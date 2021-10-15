@@ -1,4 +1,10 @@
-<?php ?>
+<?php 
+
+    require '../admin/functions/auth.php';
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -42,9 +48,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Bolsa de Trabajo</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="login.php">Iniciar Sesion</a>
-                    </li>                    
+                    </li>    
+               
 
                 </ul>
             </div>
