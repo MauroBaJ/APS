@@ -1,6 +1,6 @@
 <?php 
 
-    require '../admin/functions/auth.php';
+    include './admin/functions/auth.php';
 
 ?>
 
@@ -49,9 +49,20 @@
                         <a class="nav-link" href="#">Bolsa de Trabajo</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Iniciar Sesion</a>
-                    </li>    
+                    <!-- /**
+                        Si el usuario tiene sesion iniciada se mostrara cerrar sesion,
+                        de otra forma se mostrara iniciar sesion.
+                    */ -->
+                    <?php if(loggedIn()): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/functions/exit.php">Cerrar Sesion</a>
+                        </li> 
+                    <?php endif; ?>
+                    <?php if(!loggedIn()): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Iniciar Sesion</a>
+                        </li> 
+                    <?php endif; ?>
                
 
                 </ul>
