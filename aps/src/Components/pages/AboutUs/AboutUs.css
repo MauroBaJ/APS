@@ -1,0 +1,35 @@
+.contenedor__text{
+    font-size: 1.5rem;
+    text-align: justify;
+    max-width: 90%;
+    margin: 2rem auto;
+}
+
+@media (max-width: 967px){
+    .imagen-logo{
+        max-width: 20rem;
+    }
+    .imagen-logo>img{
+        max-width: 20rem;
+    }
+    .imagen-logo>source{
+        max-width: 20rem;
+    }
+}
+
+@media (min-width: 968px){
+    .imagen-logo{
+        width: 50rem;
+        margin-right: 20rem;
+    }
+    .imagen-logo>img{
+        width: 50rem;
+    }
+    .imagen-logo>source{
+        width: 50rem;
+    }
+}
+
+.imagen-mapa{
+    max-width: 80%;
+}

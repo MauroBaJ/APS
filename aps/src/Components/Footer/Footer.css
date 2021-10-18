@@ -1,0 +1,22 @@
+.footer{
+    margin-top: 5rem;
+    background-color: black;
+    padding: 2.5rem;
+    flex-direction: column;
+}
+
+@media (min-width: 768px){
+    .footer{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.footer__text{
+    color: white;
+    font-size: 1.5rem;
+}
+
+.footer__text:last-of-type{
+    text-decoration: underline;
+}
