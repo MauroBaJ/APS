@@ -26,5 +26,4 @@ function iniciarSesion($isAdmin, $usuario) : void {
 
     $_SESSION['administrador'] = ($isAdmin) ? true : false;
 
-    header('Location: /');  
 }

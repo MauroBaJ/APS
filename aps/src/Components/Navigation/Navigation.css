@@ -35,3 +35,7 @@
 .lupa:hover{
     background-color: #0f60da ;
 }
+
+.navbar{
+    z-index: 3;
+}

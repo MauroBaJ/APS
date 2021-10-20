@@ -12,7 +12,7 @@ class MainPage extends Component {
     render() { 
         return ( 
             <section>
-                <a name='top'></a>
+                
             <main className='flex-fill m'>
                 
                         <div className="container col-xxl-8 px-4 py-5">
@@ -48,18 +48,21 @@ class MainPage extends Component {
                     una variedad de estuches de insumos para hidráulica.' 
                     titulo='Visita nuestra tienda'
                     buttontext='Ir a la tienda '
+                    page='#'
                 />
                 <Card text='Llena un formulario de contacto con tus datos, y nosotros nos
                     encargaremos de llamarte o escribirte para darle seguimiento
                     a tus dudas, pedidos, o cualquier otro tema.'
                     titulo='Contactanos' 
                     buttontext='Llenar el formulario '
+                    page=''
                 />
                 <Card titulo='Bolsa de trabajo'
                     text='¿Buscas empleo? Nosotros siempre estamos contratando. Revisa
                     las vacantes disponibles, y selecciona la que más te guste.
                     SI nos gusta tu perfil, te llamaremos para una entrevista.'
                     buttontext='Buscar empleos'
+                    page=''
                 />
             </div>
         </div> 

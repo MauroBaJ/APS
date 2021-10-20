@@ -9,7 +9,7 @@ class NavBar extends Component {
     }
     render() { 
         return ( 
-            <nav className='navbar navbar-expand-lg navbar-light bg-primary'>
+            <nav className='navbar navbar-expand-lg navbar-light bg-primary nav__main'>
                 
                 <div className="container-fluid">
                     <Link to='/'>
@@ -49,7 +49,9 @@ class NavBar extends Component {
                                 <a className=" nav__link" >Bolsa de Trabajo</a>
                             </li>
                             <li className="nav-item nav__item">
-                                    <a className=" nav__link" >Iniciar Sesion</a>
+                                <Link to='/login'>
+                                    <p className=" nav__link" >Iniciar Sesion</p>
+                                </Link>
                             </li> 
                             
                         </ul>

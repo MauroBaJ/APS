@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react';
 import './GoToTop.css'
 
-export default function GoToTop() {
-    return (
-        <div>
+class GoToTop extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {  }
+    }
+
+    BacktoTop(){
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0;
+    }
+    render() { 
+        return ( 
+            <div onClick='BacktoTop()'>
             <a href='top'>
                 <div className='box'>
                     <div className='tcont'>
@@ -21,5 +31,7 @@ export default function GoToTop() {
                 </div>
             </a>
         </div>
-    )
+         );
+    }
 }
+ export default GoToTop;

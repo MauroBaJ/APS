@@ -4,14 +4,19 @@ require('database.php');
 require('auth.php');
 
 //Import de clases
-require('clases/user.php');
-require('clases/product.php');
-require('clases/card.php');
+require './clases/Aplicante.php';
+require './clases/Compra.php';
+require './clases/Direccion.php';
+require './clases/Producto.php';
+require './clases/Tarjeta.php';
+require './clases/Usuario.php';
+require './clases/Vacante.php';
+
 
 /** TODO
- *  Aplicante -> CRD
+ *  Aplicante -> RD
  *  Compra -> CR
- *  Direccion -> CR
+ *  Direccion -> R
  *  Producto -> RUD
  *  Tarjeta -> R
  *  usuarioDireccion -> R
@@ -46,6 +51,36 @@ echo '<pre>';
 var_dump($card);
 echo '</pre>';
 
+$applier = new Aplicante(
+    "Angela", "Padron", "Alonso", "ing-padron@iapp.mx",5169745704
+);
+
+echo '<pre>';
+var_dump($applier);
+echo '</pre>';
+
+$direccion = new Direccion(
+    "Azores #851-A", "Valle Oriente", "Monterrey", "Nuevo Leon", "08270"
+);
+
+echo '<pre>';
+var_dump($direccion);
+echo '</pre>';
+
+$vacante = new Vacante(
+    "Auxiliar de almacen", "Almacen",
+    "Unete a nuestro equipo como auxiliar de almacen. Tus responsabilidades
+    incluyen el surtimiento de pedidos, apoyo con inventario, limpieza de
+    area.
+    El trabajo es de 9:00 a 18:30 de Lunes a Viernes.
+    Ofrecemos: Sueldo competitivo, Seguro social, vales de despensa, prestaciones de ley"
+);
+echo '<pre>';
+var_dump($vacante);
+echo '</pre>';
+
+
+//Funciones auxiliares para tablas pivote
 
 function getUserID(){
     $user = $_SESSION['usuario'];
@@ -62,6 +97,24 @@ function getCardID($val){
     return $r;
 }
 
+function getAddressID($val){
+    $user = $_SESSION['usuario'];
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "SELECT idDireccion FROM Direccion
+        WHERE Direccion = ? AND CP = ?"
+        );
+    $r = $query->execute([$val->Direccion, $val->CP]);
+    return $r;
+}
+
+function getOpeningID($vacante){
+    $bd = conectarBD();
+    // $query = $bd->prepare("");
+
+    cerrarBD($bd);
+    // return $r;
+}
 
 // C
 
@@ -124,10 +177,10 @@ function createCard($card){
     $res = $query->execute(
         $card->Numero,
         $card->Nombre,
-        $card->Month,
+        $card->Month,//TODO
         $card->Year,
         $card->CVV
-    );
+    );//TODO
 
     if($res){
         $user = getUserID();
@@ -140,6 +193,74 @@ function createCard($card){
     }
 
     cerrarBD($bd);
+}
+
+function createAddress($direccion){
+    $bd = conectarBD();
+    $query = $bd->prepare("
+        INSERT INTO Direccion
+        (Direccion, Colonia, Ciudad, Estado, CP)
+        VALUES (?, ?, ?, ?, ?)
+    ");
+
+    $res = $query->execute([
+        $direccion->Direccion, $direccion->Colonia, $direccion->Ciudad,
+        $direccion->Estado, $direccion->CP
+    ]);
+
+    if($res){
+        $user =getUserID();
+        $idDireccion = getAddressID($direccion);
+        $query = $bd->prepare("
+            INSERT INTO usuarioDireccion
+            (idUsuario, idDireccion)
+            VALUES(?, ?)
+        ");
+        $r = $query->execute([$user, $idDireccion]);
+    }
+    
+    cerrarBD($bd);
+
+}
+
+function createApplier($applier){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "INSERT INTO Aplicante
+        (Nombre, ApellidoP, ApellidoM, Email, Telefono)
+        VALUES (?, ?, ?, ?, ?)"
+    );
+
+    $res = $query->execute([
+        $applier->Nombre, $applier->ApellidoP,
+        $applier->ApellidoM, $applier->Email,
+        $applier->Telefono
+    ]);
+
+    if($res){
+        //TODO
+    }
+    
+    cerrarBD($bd);
+
+}
+
+function createOpening($vacante){
+    $bd = conectarBD();
+    $query = $bd->prepare("
+        INSERT INTO Vacantes
+        (Nombre, Categoria, Descripcion)
+        VALUES (?, ?, ?)
+    ");
+
+    $res = $query->execute([
+        $vacante->Nombre, $vacante->Categoria,
+        $vacante->Descripcion
+    ]);
+
+    
+    cerrarBD($bd);
+
 }
 
 
@@ -158,9 +279,10 @@ function fetchUser($email, $password){
     if(password_verify($password, $result['Password'])){
         
         iniciarSesion(false, $email);
+        return json_encode($_SESSION);
     }
     else{
-        return false;
+        return json_encode('Not succesfull');
     } 
 }
 

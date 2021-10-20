@@ -18,7 +18,7 @@ class AboutUs extends Component {
         return ( 
             <div>
             <main className="m-top-100 container-lg">
-                <a name='top'></a>
+                
             <div className="row d-flex justify-content-between">
                 <div className="col-lg-4 cont-img">
                     <picture className="imagen-logo">
