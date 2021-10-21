@@ -1,20 +1,21 @@
 import { Toast } from 'bootstrap';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './Login.css'
 
-
-
-class Login extends Component {
+class Login extends Component {State
     constructor(props) {
         super(props);
-        this.state = { email : '', password : ''  };
+        this.state = { email : '', password : '', redirect: null  };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.fallo = this.fallo.bind(this);
     }
 
 
     render() { 
+
+        if(this.state.redirect) return <Redirect to ={this.state.redirect} />
         return ( 
 
             <div className='cent'>
@@ -22,6 +23,7 @@ class Login extends Component {
 
                 <div className='login__main'>
                     <main className='form-signin text-center'>
+
                         <form  className='Formulario' onSubmit={this.handleSubmit}>
                             <img className='mb-4 ' width='72' height='57' src='https:ik.imagekit.io/MBJ0523/APS/LOGO_FINAL_vector_w61Idqhz4.jpg?updatedAt=1634498445529' alt='Logotipo APS'></img>
                             <h1 className='h3 mb-3 fw-normal'>Iniciar Sesión</h1>
@@ -40,14 +42,20 @@ class Login extends Component {
                                 
 
                         </form>
-                    </main>
+                    </main>this.props.
                 </div>
             </div>
          );
     }
 
+    
 
+    fallo(a){
+        if(a){
+            alert('Credenciales incorrectas, vuelva a intentarlo por favor');
+        }
 
+    }
     async handleSubmit(event) {
         event.preventDefault();
 
@@ -56,14 +64,14 @@ class Login extends Component {
                 method: "POST",
                 body: carga
             })
-            .then(console.log('hola'))
             .catch(err => console.log(err.data));
 
         const exitoso = await respuesta.json();
-        if (exitoso) {
-            alert('Exitoso');
+        if (exitoso[0] == 'loggedIn') {
+            
+            this.setState({redirect : '/'})
         } else {
-            alert('fallo >(');
+            this.fallo(true);
         }
     }
 
@@ -74,6 +82,7 @@ class Login extends Component {
         this.setState({
           [name]: value    });
       }
+
 
 
 }

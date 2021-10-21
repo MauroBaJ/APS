@@ -12,7 +12,6 @@ import Login from './Components/pages/Login/Login';
 
 function App() {
 
-  
 
   return (
     <div className="App">

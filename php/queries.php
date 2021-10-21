@@ -4,14 +4,13 @@ require('database.php');
 require('auth.php');
 
 //Import de clases
-require './clases/Aplicante.php';
-require './clases/Compra.php';
-require './clases/Direccion.php';
-require './clases/Producto.php';
-require './clases/Tarjeta.php';
-require './clases/Usuario.php';
-require './clases/Vacante.php';
-
+include './clases/Aplicante.php';
+include './clases/Compra.php';
+include './clases/Direccion.php';
+include './clases/Producto.php';
+include './clases/Tarjeta.php';
+include './clases/Usuario.php';
+include './clases/Vacante.php';
 
 /** TODO
  *  Aplicante -> RD
@@ -27,57 +26,57 @@ require './clases/Vacante.php';
 
 //Test
 
-$anaerobico = new Product(
-    'Adhesivo Anaerobico Rojo', 'Poderoso Adhesivo anaerobico marca aps, frasco de 10ml',
-    78.99, 144, 'Anaerobico rojo.png', 'Quimicos'
-);
+// $anaerobico = new Product(
+//     'Adhesivo Anaerobico Rojo', 'Poderoso Adhesivo anaerobico marca aps, frasco de 10ml',
+//     78.99, 144, 'Anaerobico rojo.png', 'Quimicos'
+// );
 
-echo '<pre>';
-var_dump($anaerobico);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($anaerobico);
+// echo '</pre>';
 
 
-$user = new User(
-    'Miguel', 'Reyes', 'Barba', '123@hooli.com', '12321', 3396840129
-);
+// $user = new User(
+//     'Miguel', 'Reyes', 'Barba', '123@hooli.com', '12321', 3396840129
+// );
 
-echo '<p*  usuarioTarjeta -> Rre>';
-var_dump($user);
-echo '</pre>';
+// echo '<p*  usuarioTarjeta -> Rre>';
+// var_dump($user);
+// echo '</pre>';
 
-$card = new Card( "4210003012997692" ,"Mauricio Basurto Jacobo", "08", "24", "123");
+// $card = new Card( "4210003012997692" ,"Mauricio Basurto Jacobo", "08", "24", "123");
 
-echo '<pre>';
-var_dump($card);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($card);
+// echo '</pre>';
 
-$applier = new Aplicante(
-    "Angela", "Padron", "Alonso", "ing-padron@iapp.mx",5169745704
-);
+// $applier = new Aplicante(
+//     "Angela", "Padron", "Alonso", "ing-padron@iapp.mx",5169745704
+// );
 
-echo '<pre>';
-var_dump($applier);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($applier);
+// echo '</pre>';
 
-$direccion = new Direccion(
-    "Azores #851-A", "Valle Oriente", "Monterrey", "Nuevo Leon", "08270"
-);
+// $direccion = new Direccion(
+//     "Azores #851-A", "Valle Oriente", "Monterrey", "Nuevo Leon", "08270"
+// );
 
-echo '<pre>';
-var_dump($direccion);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($direccion);
+// echo '</pre>';
 
-$vacante = new Vacante(
-    "Auxiliar de almacen", "Almacen",
-    "Unete a nuestro equipo como auxiliar de almacen. Tus responsabilidades
-    incluyen el surtimiento de pedidos, apoyo con inventario, limpieza de
-    area.
-    El trabajo es de 9:00 a 18:30 de Lunes a Viernes.
-    Ofrecemos: Sueldo competitivo, Seguro social, vales de despensa, prestaciones de ley"
-);
-echo '<pre>';
-var_dump($vacante);
-echo '</pre>';
+// $vacante = new Vacante(
+//     "Auxiliar de almacen", "Almacen",
+//     "Unete a nuestro equipo como auxiliar de almacen. Tus responsabilidades
+//     incluyen el surtimiento de pedidos, apoyo con inventario, limpieza de
+//     area.
+//     El trabajo es de 9:00 a 18:30 de Lunes a Viernes.
+//     Ofrecemos: Sueldo competitivo, Seguro social, vales de despensa, prestaciones de ley"
+// );
+// echo '<pre>';
+// var_dump($vacante);
+// echo '</pre>';
 
 
 //Funciones auxiliares para tablas pivote
@@ -153,7 +152,7 @@ function createProduct($product){
     $bd = conectarBD();
     $query = $bd->prepare("INSERT INTO Producto
     (Nombre, Descripcion, Precio, Inventario, Imagen, Categoria)
-    VALUES(?, ?, ?, ?, ?, ?)");
+    VALUES(?, ?, ?, dIn() (previously declared in /mnt/sda1/Documentos/Code/WEB/APS-React-Test/php?, ?, ?)");
 
 
     $result = $query->execute([
@@ -166,7 +165,7 @@ function createProduct($product){
 }
 
 function createCard($card){
-    $bd = conectarBD();
+    $bd = conectarBd();
     $query = $bd->prepare(
         "INSERT INTO Tarjeta 
         (Numero, Nombre, Month, Year, CVV)
@@ -270,8 +269,8 @@ function fetchUser($email, $password){
 
 
     $bd = conectarBD();
-    $query = $bd->prepare( "SELECT Email, Password FROM Usuario WHERE Email = ?");
-    $query->execute([$email]);
+    $query = $bd->prepare( "SELECT Email, Password FROM Usuario WHERE Email = '${email}'");
+    $query->execute();
 
     $result = $query->fetch(PDO::FETCH_ASSOC);
     cerrarBD($bd);
@@ -279,10 +278,10 @@ function fetchUser($email, $password){
     if(password_verify($password, $result['Password'])){
         
         iniciarSesion(false, $email);
-        return json_encode($_SESSION);
+        return true;
     }
     else{
-        return json_encode('Not succesfull');
+        return false;
     } 
 }
 
@@ -299,6 +298,7 @@ function fetchAdmin($email, $password){
     if(password_verify($password, $result['Password'])){
         
         iniciarSesion(true, $email);
+        return true;
     }
     else{
         return false;

@@ -3,7 +3,7 @@
     background-color: black;
     padding: 2.5rem;
     flex-direction: column;
-    position: fixed;
+     position: fixed;
     bottom: 0;
     width: 100vw;
 }
