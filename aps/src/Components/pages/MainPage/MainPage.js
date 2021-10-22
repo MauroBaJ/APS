@@ -48,7 +48,7 @@ class MainPage extends Component {
                     una variedad de estuches de insumos para hidráulica.' 
                     titulo='Visita nuestra tienda'
                     buttontext='Ir a la tienda '
-                    page='#'
+                    page='/tienda'
                 />
                 <Card text='Llena un formulario de contacto con tus datos, y nosotros nos
                     encargaremos de llamarte o escribirte para darle seguimiento

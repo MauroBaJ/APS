@@ -322,6 +322,20 @@ function fetchCard(){
     return $resultado;
 }
 
+function fetchArticulos(){
+    $bd = conectarBD();
+    $query = $bd->prepare("
+        SELECT * FROM Producto
+        WHERE Inventario > 1
+    ");
+
+    $query->execute();
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+
+    return $res;
+}
+
 
 // U
 

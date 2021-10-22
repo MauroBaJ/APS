@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { NavLink, Link, BrowserRouter as Router } from 'react-router-dom';
 import './Navigation.css'
+import { NavLink, Link, BrowserRouter as Router } from 'react-router-dom';
+import NAV__LINK from './NAV__LINK';
 
 class NavBar extends Component {
     constructor(props) {
@@ -29,30 +30,30 @@ class NavBar extends Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav nav__ul">
                             
-                            <li className="nav-item nav__item">
-                                <Link to='/'>
-                                    <p className=" nav__link">Inicio</p>
-                                </Link>
-                            </li>
-                            <li className="nav-item nav__item">
-                                <p className=" nav__link" >Tienda</p>
-                            </li>
-                            <li className="nav-item nav__item">
-                                <a className=" nav__link" >Contacto</a>
-                            </li>
-                            <li className="nav-item nav__item">
-                                <Link to='/aboutus'>
-                                    <p className=" nav__link" >Acerca de Nosotros</p>
-                                </Link>
-                            </li>
-                            <li className="nav-item nav__item">
-                                <a className=" nav__link" >Bolsa de Trabajo</a>
-                            </li>
-                            <li className="nav-item nav__item">
-                                <Link to='/login'>
-                                    <p className=" nav__link" >Iniciar Sesion</p>
-                                </Link>
-                            </li> 
+                            <NAV__LINK
+                                link='/'
+                                name='Inicio'
+                            />
+                            <NAV__LINK 
+                                link='/tienda'
+                                name='Tienda'
+                            />
+                            <NAV__LINK 
+                                link='#'
+                                name='Contacto'
+                            />
+                            <NAV__LINK 
+                                link='/aboutUs'
+                                name='Acerca de Nosotros'
+                            />
+                            <NAV__LINK 
+                                link='#'
+                                name='Bolsa de Trabajo'
+                            />
+                            <NAV__LINK 
+                                link='/login'
+                                name='Iniciar Sesion'
+                            />
                             
                         </ul>
                         
