@@ -38,11 +38,11 @@ class Login extends Component {State
 
                                 <button className="w-100 btn btn-lg btn-primary login__boton"  type='submit' value='Submit'>Iniciar Sesión</button>
                                 
-                                <p className='login__register'>No tienes cuenta? <Link to='#'><span className='createAcc'>Registrate</span></Link></p>
+                                <p className='login__register'>No tienes cuenta? <Link to='/register'><span className='createAcc'>Registrate</span></Link></p>
                                 
 
                         </form>
-                    </main>this.props.
+                    </main>
                 </div>
             </div>
          );

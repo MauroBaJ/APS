@@ -1,7 +1,7 @@
 <?php
 
 function loggedIn() : bool{
-    session_start();
+    // session_start();
 
     $auth = $_SESSION['login'];
 

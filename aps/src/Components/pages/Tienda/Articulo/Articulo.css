@@ -2,6 +2,8 @@
     width: 100%;
     border: 1px solid rgba(128, 128, 128, 0.2);
     display: flex;
+    position: relative;
+    height: 40vh;
 }
 .articulo__contenedor__imagen img{
     max-width: auto;
@@ -27,6 +29,7 @@
         max-width: 33.3vw;
         box-shadow: 0 1rem 1.2rem rgba(128, 128, 128, 0.5);
         margin: 0 auto 2rem auto;
+        height: auto;
     }
     .articulo__contenedor__imagen img{
         max-width: 100%;

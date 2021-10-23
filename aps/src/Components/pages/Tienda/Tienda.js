@@ -31,9 +31,10 @@ function Tienda() {
 
                 {products.map((product) => 
                     <Articulo 
+                        idProducto={product.idProducto}
                         nombre={product.Nombre}
                         descripcion={product.Descripcion}
-                        precio={product.precio}
+                        precio={product.Precio}
                         inventario={product.Inventario}
                         img={product.Imagen}
                         categoria={product.categoria}

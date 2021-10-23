@@ -1,15 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import './Navigation.css'
 import { NavLink, Link, BrowserRouter as Router } from 'react-router-dom';
 import NAV__LINK from './NAV__LINK';
 
-class NavBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
+export default function Navigation() {
+
+    const [user, setUser] = useState({
+        userType: '',
+        loggedIn: ''
+    });
+
+    const fetchUserType = async() =>{
+        const res = await fetch('http://localhost:8000/fetch/fetchUserType.php')
+        .catch(e => console.log(e));
+
+        const success = await res.json();
+        const user = success;
+        setUser(user);
     }
-    render() { 
-        return ( 
+
+    useEffect(()=>( fetchUserType() ), []);
+
+    console.log(user);
+
+
+    return (
+        <header>
             <nav className='navbar navbar-expand-lg navbar-light bg-primary nav__main'>
                 
                 <div className="container-fluid">
@@ -68,8 +84,8 @@ class NavBar extends Component {
                 </div>
                 
             </nav>
-         );
-    }
+        </header>
+    )
 }
- 
-export default NavBar;
+
+

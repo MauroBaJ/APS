@@ -9,6 +9,8 @@ import Tienda from './Components/pages/Tienda/Tienda';
 
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Login from './Components/pages/Login/Login';
+import { CreateAccount } from './Components/pages/CreateAccount/CreateAccount';
+import Producto from './Components/pages/Producto/Producto';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route exact path='/aboutus' component={AboutUs}></Route>
           <Route exact path='/login' component={Login}></Route>
           <Route exact path='/tienda' component={Tienda}></Route>
+          <Route exact path='/register' component={CreateAccount}></Route>
+          <Route exact path='/producto' component={Producto}></Route>
         </Switch>
 
 

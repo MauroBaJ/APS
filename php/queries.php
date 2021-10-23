@@ -24,60 +24,6 @@ include './clases/Vacante.php';
  */
 
 
-//Test
-
-// $anaerobico = new Product(
-//     'Adhesivo Anaerobico Rojo', 'Poderoso Adhesivo anaerobico marca aps, frasco de 10ml',
-//     78.99, 144, 'Anaerobico rojo.png', 'Quimicos'
-// );
-
-// echo '<pre>';
-// var_dump($anaerobico);
-// echo '</pre>';
-
-
-// $user = new User(
-//     'Miguel', 'Reyes', 'Barba', '123@hooli.com', '12321', 3396840129
-// );
-
-// echo '<p*  usuarioTarjeta -> Rre>';
-// var_dump($user);
-// echo '</pre>';
-
-// $card = new Card( "4210003012997692" ,"Mauricio Basurto Jacobo", "08", "24", "123");
-
-// echo '<pre>';
-// var_dump($card);
-// echo '</pre>';
-
-// $applier = new Aplicante(
-//     "Angela", "Padron", "Alonso", "ing-padron@iapp.mx",5169745704
-// );
-
-// echo '<pre>';
-// var_dump($applier);
-// echo '</pre>';
-
-// $direccion = new Direccion(
-//     "Azores #851-A", "Valle Oriente", "Monterrey", "Nuevo Leon", "08270"
-// );
-
-// echo '<pre>';
-// var_dump($direccion);
-// echo '</pre>';
-
-// $vacante = new Vacante(
-//     "Auxiliar de almacen", "Almacen",
-//     "Unete a nuestro equipo como auxiliar de almacen. Tus responsabilidades
-//     incluyen el surtimiento de pedidos, apoyo con inventario, limpieza de
-//     area.
-//     El trabajo es de 9:00 a 18:30 de Lunes a Viernes.
-//     Ofrecemos: Sueldo competitivo, Seguro social, vales de despensa, prestaciones de ley"
-// );
-// echo '<pre>';
-// var_dump($vacante);
-// echo '</pre>';
-
 
 //Funciones auxiliares para tablas pivote
 
@@ -331,6 +277,19 @@ function fetchArticulos(){
 
     $query->execute();
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+
+    return $res;
+}
+
+function fetchArticulo($id){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "SELECT * FROM Producto
+        WHERE idProducto = ?"
+    );
+    $query->execute([$id]);
+    $res= $query->fetchAll(PDO::FETCH_ASSOC);
     cerrarBD($bd);
 
     return $res;

@@ -1,6 +1,7 @@
 .tienda__main{
     margin-top: 5rem;
     overflow-x: hidden;
+    
 }
 
 .tienda__contenedor{
@@ -14,9 +15,16 @@
 .tienda__titulo{
     text-transform: uppercase;
     font-weight: bold;
+    margin: 3rem auto;
+    font-size: 4rem;
 }
 
 @media(min-width: 768px){
+.tienda__main{
+    width: 95%;
+    margin: 0 auto
+}
+
     .tienda__contenedor{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
