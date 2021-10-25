@@ -1,6 +1,6 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navigation.css'
-import { NavLink, Link, BrowserRouter as Router } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import NAV__LINK from './NAV__LINK';
 
 export default function Navigation() {
@@ -55,7 +55,7 @@ export default function Navigation() {
                                 name='Tienda'
                             />
                             <NAV__LINK 
-                                link='#'
+                                link='/contacto'
                                 name='Contacto'
                             />
                             <NAV__LINK 

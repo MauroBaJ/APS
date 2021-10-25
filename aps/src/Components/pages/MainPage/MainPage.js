@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GoToTop from '../../GoToTop/GoToTop';
+
 import Card from '../../Card/Card';
 import './MainPage.css';
 
