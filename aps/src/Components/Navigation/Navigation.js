@@ -63,7 +63,7 @@ export default function Navigation() {
                                 name='Acerca de Nosotros'
                             />
                             <NAV__LINK 
-                                link='#'
+                                link='/careers'
                                 name='Bolsa de Trabajo'
                             />
                             <NAV__LINK 

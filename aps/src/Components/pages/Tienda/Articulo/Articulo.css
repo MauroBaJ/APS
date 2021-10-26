@@ -4,6 +4,9 @@
     display: flex;
     position: relative;
     height: 40vh;
+    background-color: white;
+    border-radius: 2rem;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.5);
 }
 .articulo__contenedor__imagen img{
     max-width: auto;
