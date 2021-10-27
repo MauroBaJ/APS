@@ -1,0 +1,14 @@
+.Opening{
+    background-color: white;
+    padding: 2rem 1rem; 
+    width: 90%;
+    margin: 0 auto 1.5rem auto;
+}
+.Opening h2{
+    font-weight: bold;
+    font-size: 3rem;
+}
+.Opening p{
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+}

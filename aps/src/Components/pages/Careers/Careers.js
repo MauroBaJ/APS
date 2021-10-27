@@ -1,5 +1,6 @@
 import React from 'react'
 import './Careers.css'
+import { Link } from 'react-router-dom'
 
 export default function Careers() {
     return (
@@ -32,6 +33,12 @@ export default function Careers() {
                         </li>
 
                     </ul>
+                </div>
+                <div className='drop'></div>
+                <div className='careers_detail__cont'>
+                    <Link to='/viewJobs'>
+                        <btn className='btn btn-lg btn-primary'>Ver las vacantes activas</btn>
+                    </Link>
                 </div>
             </div>
  

@@ -295,6 +295,17 @@ function fetchArticulo($id){
     return $res;
 }
 
+function fetchJobs(){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "SELECT * FROM Vacantes"
+    );
+    $query->execute([]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+
+    return $res;
+}
 
 // U
 
