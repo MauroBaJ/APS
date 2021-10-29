@@ -1,6 +1,7 @@
 
 import './Producto.css'
 import React, { useEffect, useState } from 'react';
+import ProdForm from './ProdForm';
 
 export default function Producto(props) {
 
@@ -36,15 +37,11 @@ export default function Producto(props) {
                     {Nombre}
                 </h1>
                 <h2 className='producto__precio'><em>${Precio}</em></h2>
-                <form className='producto__selector mt-5'>
-                    <fieldset className='d-flex p-2 fs justify-content-sb'>
-                        <label for='cantidad' className='w-25 label'>Cantidad</label>
-                        <input className='w-75 inp' type='number' step='1' min='0' max={Inventario}></input>
-                    </fieldset>
-                    <button type='submit' value='submit'
-                    className='btn btn-lg btn-primary d-block w-100 mt-5'
-                    >Agregar al carrito</button>
-                </form>
+                <ProdForm
+                idProducto={props.location.state}
+                inventario={Inventario}
+                precio={Precio}
+                />
 
                 <p className='producto__descripcion'>{Descripcion}</p>
             </div>

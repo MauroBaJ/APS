@@ -72,7 +72,7 @@ export default function Navigation() {
                                 name='Iniciar Sesion'
                             />
                             <NAV__LINK_IMG
-                                link='#'
+                                link='/carrito'
                                 img='https://ik.imagekit.io/MBJ0523/APS/SVG/shopping-cart-outline-svgrepo-com_dOlCXVq-H.svg?updatedAt=1635469301726'
                             />
                             
