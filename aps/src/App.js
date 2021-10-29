@@ -13,6 +13,7 @@ import Producto from './Components/pages/Producto/Producto';
 import Contacto from './Components/pages/Contacto/Contacto';
 import Careers from './Components/pages/Careers/Careers';
 import viewJobs from './Components/pages/ViewJobs/viewJobs';
+import Vacante from './Components/pages/Vacante/Vacante';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route exact path='/contacto' component={Contacto}></Route>
           <Route exact path='/careers' component={Careers}></Route>
           <Route exact path='/viewJobs' component={viewJobs}></Route>
+          <Route exact path='/vacante' component={Vacante}></Route>
         </Switch>
 
 

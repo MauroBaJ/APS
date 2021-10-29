@@ -20,7 +20,7 @@ include './clases/Vacante.php';
  *  Tarjeta -> R
  *  usuarioDireccion -> R
  *  vacanteAplicante -> R
- *  Vacante -> CRUD
+ *  Vacante -> CUD
  */
 
 
@@ -304,6 +304,15 @@ function fetchJobs(){
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
     cerrarBD($bd);
 
+    return $res;
+}
+
+function fetchVacante($id){
+    $bd = conectarBD();
+    $query = $bd->prepare( " SELECT * FROM Vacantes WHERE idVacantes = ? ");
+    $query->execute([$id]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
     return $res;
 }
 

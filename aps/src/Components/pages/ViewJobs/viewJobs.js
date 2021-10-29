@@ -15,7 +15,7 @@ function ViewJobs() {
         setJobs(trabajos);
     }
 
-    useEffect( () => pedirTrabajos, [])
+    useEffect( () => pedirTrabajos(), [])
 
     
 

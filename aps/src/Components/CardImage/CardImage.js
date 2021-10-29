@@ -12,7 +12,7 @@ export default function CardImage(props) {
             </p>
             <div className="d-grid gap-2 d-md-flex justify-content-md-start">
                 <Link to={props.link}>
-                <button type="button" className="btn btn-primary btn-lg px-4 me-md-2 main__button">{props.btntxt}&raquo;</button>
+                <button type="button" className="btn btn-primary btn-lg px-4 me-md-2 main__button w-100 d-block mt-2">{props.btntxt}&raquo;</button>
                 </Link>
             </div>
         </div>

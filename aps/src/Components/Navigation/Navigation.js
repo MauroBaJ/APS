@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Navigation.css'
 import {Link} from 'react-router-dom';
 import NAV__LINK from './NAV__LINK';
+import NAV__LINK_IMG from './NAV__LINK_IMG'
 
 export default function Navigation() {
 
@@ -44,7 +45,7 @@ export default function Navigation() {
                         <span className='navbar-toggler-icon'></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav nav__ul">
+                        <ul className="navbar-nav nav__ul d-flex">
                             
                             <NAV__LINK
                                 link='/'
@@ -70,17 +71,21 @@ export default function Navigation() {
                                 link='/login'
                                 name='Iniciar Sesion'
                             />
+                            <NAV__LINK_IMG
+                                link='#'
+                                img='https://ik.imagekit.io/MBJ0523/APS/SVG/shopping-cart-outline-svgrepo-com_dOlCXVq-H.svg?updatedAt=1635469301726'
+                            />
                             
                         </ul>
                         
                     </div>
-
+{/* 
                 <form className="d-none d-lg-flex">
                     <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"></input>
                     <button className="btn btn-outline-success" type="submit" className='lupa'>
                         <img src="https://ik.imagekit.io/MBJ0523/APS/SVG/lupa_gbbdmvHIum.svg?updatedAt=1634499120121"alt="Buscar" ></img>
                     </button>
-                </form>
+                </form> */}
                 </div>
                 
             </nav>

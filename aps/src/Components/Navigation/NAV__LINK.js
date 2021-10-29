@@ -8,6 +8,7 @@ export default function NAV__LINK(props) {
             <li className="nav-item nav__item">
                 <Link to={props.link}>
                     <p className=" nav__link">{props.name}</p>
+                    <img src={props.img} className='img'></img>
                 </Link>
             </li>
         </div>
