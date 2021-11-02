@@ -39,6 +39,7 @@ export default function Producto(props) {
                 <h2 className='producto__precio'><em>${Precio}</em></h2>
                 <ProdForm
                 idProducto={props.location.state}
+                nombre={Nombre}
                 inventario={Inventario}
                 precio={Precio}
                 />

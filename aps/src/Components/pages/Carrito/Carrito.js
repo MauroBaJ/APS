@@ -1,34 +1,69 @@
 import React from 'react'
-// import ',/Carrito.css'
+import './Carrito.css'
+import {Link} from 'react-router-dom'
 
 export default function Carrito() {
 
     const str = JSON.parse(localStorage.getItem('products'));
 
+    const total = (str) =>{
+        let tot = 0
+        str.map( item =>{
+            tot += (item.cantidad) * (item.precio)
+        })
+        return tot
+    } 
+
     return (
         <main className='carrito__main'>
+            <h1 className='carrito__h1'>Tu carrito de compras</h1>
             <table className='carrito__table'>
                 <thead>
                     <tr>
-                        <th>Artículo</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Sub Total</th>
-                        <th>Eliminar</th>
+                        <th className='carrito__table__head'>Artículo</th>
+                        <th className='carrito__table__head'>Nombre</th>
+                        <th className='carrito__table__head'>Cantidad</th>
+                        <th className='carrito__table__head'>Precio Unitario</th>
+                        <th className='carrito__table__head'>Sub Total</th>
+                        <th className='carrito__table__head'>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
                 {str.map( item =>
-                    <tr>
+                    <tr className='carrito__table__trow'>
                         <td>{item.id}</td>
+                        <td>{item.name}</td>
                         <td>{item.cantidad}</td>
-                        <td>{item.precio}</td>
+                        <td>${item.precio}</td>
                         <td>{ (item.cantidad) * (item.precio) }</td>
-                        <td>hola</td>
+                        <td>
+                            <btn className='btn__delete' value='Delete'>
+                                X
+                            </btn>
+                        </td>
                     </tr>
                 )}
                 </tbody>
+                <tfoot className='carrito__foot'>
+                    <tr>
+                        <td>
+                            <b> TOTAL</b>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <b>${total(str)}</b>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
             </table>
+
+            <Link to='#' >
+                <btn className='btn btn-lg btn-secondary'>Proceder al pago</btn>
+            </Link>
+
         </main>
     )
 }
