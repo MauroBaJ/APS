@@ -6,24 +6,23 @@ import NAV__LINK_IMG from './NAV__LINK_IMG'
 
 export default function Navigation() {
 
-    const [user, setUser] = useState({
-        userType: '',
-        loggedIn: ''
-    });
+        const [session, setSession] = useState({
+            estado: false,
+            privilegios: ''
+        })
+        useEffect( () => {
+            setInterval( () =>{
+                setSession({
+                    estado : sessionStorage.getItem('state'),
+                    privilegios: sessionStorage.getItem('privileges')
+                })
+            }, 1500)
+        }, session )
+        console.log(session);
 
-    const fetchUserType = async() =>{
-        const res = await fetch('http://localhost:8000/fetch/fetchUserType.php')
-        .catch(e => console.log(e));
 
-        const success = await res.json();
-        const user = success;
-        setUser(user);
-    }
 
-    useEffect(()=>( fetchUserType() ), []);
-
-    console.log(user);
-
+        const {estado, privilegios} = session
 
     return (
         <header>
@@ -67,10 +66,27 @@ export default function Navigation() {
                                 link='/careers'
                                 name='Bolsa de Trabajo'
                             />
-                            <NAV__LINK 
+                            {
+                                estado
+                                    ?<NAV__LINK 
+                                    link='/logOut'
+                                    name='Cerrar Sesión'
+                                    />
+                                   :<NAV__LINK 
+                                    link='/login'
+                                    name='Iniciar Sesion'
+                                />
+                            }
+                            {
+                                (privilegios==='admin')
+                                ?<NAV__LINK 
                                 link='/login'
-                                name='Iniciar Sesion'
-                            />
+                                name='Administrar'
+                                />
+                                :<span></span>
+                            }
+            
+            ´
                             <NAV__LINK_IMG
                                 link='/carrito'
                                 img='https://ik.imagekit.io/MBJ0523/APS/SVG/shopping-cart-outline-svgrepo-com_dOlCXVq-H.svg?updatedAt=1635469301726'
@@ -92,5 +108,3 @@ export default function Navigation() {
         </header>
     )
 }
-
-

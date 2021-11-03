@@ -17,11 +17,11 @@ $email = $data->email;
 $password = $data->password;
 
 if(fetchAdmin($email, $password)){
-    $response = ['loggedIn', 'ADM'];
+    $response = ['loggedIn', 'ADMIN'];
     $msg = json_encode($response);
 }
 else if (fetchUser($email, $password)){
-    $response = ['loggedIn'];
+    $response = ['loggedIn', 'USER'];
     $msg = json_encode($response);
 }  
 else $msg = json_encode('no');

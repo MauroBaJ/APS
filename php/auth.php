@@ -29,3 +29,7 @@ function iniciarSesion($isAdmin, $usuario) {
 
 
 }
+
+function cerrarSesion(){
+    session_destroy();
+}

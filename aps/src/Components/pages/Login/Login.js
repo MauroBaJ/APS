@@ -15,7 +15,7 @@ class Login extends Component {State
 
     render() { 
 
-        if(this.state.redirect) return <Redirect to ={this.state.redirect} />
+     if(this.state.redirect) return <Redirect to ={this.state.redirect} />
         return ( 
 
             <div className='cent'>
@@ -39,7 +39,7 @@ class Login extends Component {State
                                 <button className="w-100 btn btn-lg btn-primary login__boton"  type='submit' value='Submit'>Iniciar Sesión</button>
                                 
                                 <p className='login__register'>No tienes cuenta? <Link to='/register'><span className='createAcc'>Registrate</span></Link></p>
-                                
+  
 
                         </form>
                     </main>
@@ -56,6 +56,8 @@ class Login extends Component {State
         }
 
     }
+
+
     async handleSubmit(event) {
         event.preventDefault();
 
@@ -67,8 +69,14 @@ class Login extends Component {State
             .catch(err => console.log(err.data));
 
         const exitoso = await respuesta.json();
-        if (exitoso[0] == 'loggedIn') {
-            
+        if (exitoso) {
+            if(exitoso[1] == 'USER'){
+                sessionStorage.setItem('state', true)
+                sessionStorage.setItem('privileges', 'user')
+            }else{
+                sessionStorage.setItem('state', true)
+                sessionStorage.setItem('privileges', 'admin')
+            }
             this.setState({redirect : '/'})
         } else {
             this.fallo(true);

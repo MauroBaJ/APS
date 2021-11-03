@@ -15,6 +15,7 @@ import Careers from './Components/pages/Careers/Careers';
 import viewJobs from './Components/pages/ViewJobs/viewJobs';
 import Vacante from './Components/pages/Vacante/Vacante';
 import Carrito from './Components/pages/Carrito/Carrito';
+import LogOut from './Components/LogOut/LogOut';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route exact path='/viewJobs' component={viewJobs}></Route>
           <Route exact path='/vacante' component={Vacante}></Route>
           <Route exact path='/carrito' component={Carrito}></Route>
+          <Route exact path='/logOut' component={LogOut}></Route>
         </Switch>
 
 
