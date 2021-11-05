@@ -18,7 +18,6 @@ export default function Navigation() {
                 })
             }, 1500)
         }, session )
-        console.log(session);
 
 
 
@@ -80,7 +79,7 @@ export default function Navigation() {
                             {
                                 (privilegios==='admin')
                                 ?<NAV__LINK 
-                                link='/login'
+                                link='/admin'
                                 name='Administrar'
                                 />
                                 :<span></span>

@@ -14,6 +14,13 @@ export default function Carrito() {
         return tot
     } 
 
+    const delProduct = (productID) =>{
+        let productosAlmacenados = JSON.parse(localStorage.getItem('products'));
+        let productos = productosAlmacenados.filter( p => p.id != productID);
+        localStorage.setItem('products', JSON.stringify(productos));
+        window.location.reload();
+    } 
+
     return (
         <main className='carrito__main'>
             <h1 className='carrito__h1'>Tu carrito de compras</h1>
@@ -29,20 +36,24 @@ export default function Carrito() {
                     </tr>
                 </thead>
                 <tbody>
-                {str.map( item =>
-                    <tr className='carrito__table__trow'>
-                        <td>{item.id}</td>
-                        <td>{item.name}</td>
-                        <td>{item.cantidad}</td>
-                        <td>${item.precio}</td>
-                        <td>{ (item.cantidad) * (item.precio) }</td>
-                        <td>
-                            <btn className='btn__delete' value='Delete'>
-                                X
-                            </btn>
-                        </td>
-                    </tr>
-                )}
+                {str 
+                    ?str.map( item =>
+                        <tr className='carrito__table__trow'>
+                            <td>{item.id}</td>
+                            <td>{item.name}</td>
+                            <td>{item.cantidad}</td>
+                            <td>${item.precio}</td>
+                            <td>{ (item.cantidad) * (item.precio) }</td>
+                            <td>
+                                <btn className='btn__delete' value='Delete'
+                                onClick={(e) => {delProduct(item.id)} }>
+                                    
+                                </btn>
+                            </td>
+                        </tr>
+                    )
+                       :<tr></tr>
+                }
                 </tbody>
                 <tfoot className='carrito__foot'>
                     <tr>
@@ -52,7 +63,7 @@ export default function Carrito() {
                         <td></td>
                         <td></td>
                         <td>
-                            <b>${total(str)}</b>
+                            <b>${total(str).toFixed(2)}</b>
                         </td>
                         <td></td>
                         <td></td>
