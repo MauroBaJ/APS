@@ -1,0 +1,5 @@
+{
+    "require": {
+        "imagekit/imagekit": "^2.0"
+    }
+}
