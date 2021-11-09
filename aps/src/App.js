@@ -17,9 +17,12 @@ import Vacante from './Components/pages/Vacante/Vacante';
 import Carrito from './Components/pages/Carrito/Carrito';
 import LogOut from './Components/LogOut/LogOut';
 import Admin from './Components/pages/Admin/Admin';
+import CrearProducto from './Components/pages/CrearProducto/CrearProducto';
 
 
 function App() {
+
+
 
 
   return (
@@ -38,9 +41,10 @@ function App() {
           <Route exact path='/careers' component={Careers}></Route>
           <Route exact path='/viewJobs' component={viewJobs}></Route>
           <Route exact path='/vacante' component={Vacante}></Route>
-          <Route exact path='/carrito' component={Carrito}></Route>
+          GoToTop  <Route exact path='/carrito' component={Carrito}></Route>
           <Route exact path='/logOut' component={LogOut}></Route>
           <Route exact path='/admin' component={Admin}></Route>
+          <Route exact path='/admin/products/create' component={CrearProducto}></Route>
         </Switch>
 
 

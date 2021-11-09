@@ -98,7 +98,7 @@ function createProduct($product){
     $bd = conectarBD();
     $query = $bd->prepare("INSERT INTO Producto
     (Nombre, Descripcion, Precio, Inventario, Imagen, Categoria)
-    VALUES(?, ?, ?, dIn() (previously declared in /mnt/sda1/Documentos/Code/WEB/APS-React-Test/php?, ?, ?)");
+    VALUES(?, ?, ?, ?, ?, ?)");
 
 
     $result = $query->execute([
@@ -108,6 +108,7 @@ function createProduct($product){
 
 
     cerrarBD($bd);
+    return $result;
 }
 
 function createCard($card){

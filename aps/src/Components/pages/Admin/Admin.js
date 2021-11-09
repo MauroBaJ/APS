@@ -10,7 +10,7 @@ export default class Admin extends Component {
                     Panel de Administracion
                 </h1>
                 <div className='contenedor admin__contenedor'>
-                    <Link to='#'>
+                    <Link to='/admin/products/create'>
                         <btn className='btn btn-lg btn-primary adm__btn'>
                             Crear Producto    
                         </btn>
