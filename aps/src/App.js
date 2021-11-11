@@ -22,6 +22,9 @@ import CrearProducto from './Components/pages/CrearProducto/CrearProducto';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
 import ModificarProducto from './Components/pages/ModificarProducto/ModificarProducto';
 import Tabla from './Components/pages/ModificarProducto/Tabla';
+import CrearVacante from './Components/pages/CrearVacante/CrearVacante';
+import TablaVacantes from './Components/pages/ModificarVacante/TablaVacantes';
+import ModificarVacante from './Components/pages/ModificarVacante/ModificarVacante';
 function App() {
 
 
@@ -49,6 +52,9 @@ function App() {
           <Route exact path='/admin/products/create' component={CrearProducto}></Route>
           <Route exact path='/admin/products/modify' component={ModificarProducto}></Route>
           <Route exact path='/admin/products/modify/product' component={Tabla}></Route>
+          <Route exact path='/admin/careers/create' component={CrearVacante} ></Route>
+          <Route exact path='/admin/careers/modify'component={TablaVacantes} ></Route>
+          <Route exact path='/admin/careers/modify/opening' component={ModificarVacante}></Route>
         </Switch>
 
 

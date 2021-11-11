@@ -20,12 +20,12 @@ export default class Admin extends Component {
                             Modificar Producto    
                         </btn>
                     </Link>
-                    <Link to='#'>
+                    <Link to='/admin/careers/create'>
                         <btn className='btn btn-lg btn-primary adm__btn'>
                             Crear Vacante    
                         </btn>
                     </Link>
-                    <Link to='#'>
+                    <Link to='/admin/careers/modify'>
                         <btn className='btn btn-lg btn-primary adm__btn'>
                             Modificar Vacante
                         </btn>

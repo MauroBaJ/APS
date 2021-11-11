@@ -206,7 +206,7 @@ function createOpening($vacante){
 
     
     cerrarBD($bd);
-
+    return $res;
 }
 
 
@@ -340,6 +340,24 @@ function updateProduct($product, $id){
     return $result;
 }
 
+function updateVacante($vacante, $id){
+    $bd = conectarBD();
+
+    $query = $bd->prepare("
+    UPDATE Vacantes
+    SET Nombre = ?, Descripcion = ?, Categoria = ?
+    WHERE idVacantes  = ?");
+
+
+    $result = $query->execute([
+         $vacante->Nombre, $vacante->Descripcion, $vacante->Categoria,$id
+     ]);
+
+
+    cerrarBD($bd);
+    return $result;
+}
+
 // D 
 
 function deleteProduct($id){
@@ -350,5 +368,15 @@ function deleteProduct($id){
     );
      $res = $query->execute([$id]);
      cerrarBD($bd);
+    return $res;
+}
+function deleteOpening($id){
+    $bd = conectarBD();
+    $query = $bd->prepare("
+    DELETE FROM Vacantes
+    WHERE idVacantes = ?
+    ");
+
+    $res = $query->execute([$id]);
     return $res;
 }
