@@ -319,5 +319,36 @@ function fetchVacante($id){
 
 // U
 
+function updateProduct($product, $id){
+    $bd = conectarBD();
+
+    $query = $bd->prepare("
+    UPDATE Producto
+    SET Nombre = ?, Descripcion = ?, Precio = ?, 
+    Inventario = ?, Imagen = ?, Categoria = ?
+    WHERE idProducto  = ?");
+
+
+    $result = $query->execute([
+         $product->Nombre, $product->Descripcion, $product->Precio,
+         $product->Inventario, $product->Imagen, $product->Categoria,
+         $id
+     ]);
+
+
+    cerrarBD($bd);
+    return $result;
+}
+
 // D 
 
+function deleteProduct($id){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "DELETE FROM Producto
+        WHERE idProducto = ?"
+    );
+     $res = $query->execute([$id]);
+     cerrarBD($bd);
+    return $res;
+}

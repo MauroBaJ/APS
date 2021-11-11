@@ -2,9 +2,10 @@ import React from 'react'
 import './FP.css'
 import { useEffect, useState } from 'react'
 
-export default function FormProduct() {
+export default function FormProduct(props) {
 
     const [product, setProduct] = useState({
+        id: props.id,
         nombre: '',
         descripcion: '',
         precio: '',
@@ -13,6 +14,8 @@ export default function FormProduct() {
         categoria: ''
     })
 
+    const {Nombre, Descripcion, Precio, Inventario, Imagen, Categoria, id} = product;
+    const address = props.address, mensaje = props.mensaje;
 
 
     const onChange = (e) => setProduct({...product, [e.target.name]: e.target.value});
@@ -21,16 +24,17 @@ export default function FormProduct() {
         e.preventDefault();
         const body = JSON.stringify(product);
         console.log(product);
+        
         const request = await fetch(
-            'http://localhost:8000/create/createProduct.php',
+            address,
             {
                 method: 'POST',
                 body: body
             }
             ).catch((e) => console.log(e));
         const response = await request.json();
-        if(response=='done') {
-            alert('Producto Agregado Correctamente')
+        if(response) {
+            alert(`Producto ${mensaje} Correctamente`)
             window.location = '/admin'
         }
         else alert('Ocurrio un error agregando el producto')

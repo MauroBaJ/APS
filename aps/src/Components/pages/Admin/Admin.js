@@ -15,7 +15,7 @@ export default class Admin extends Component {
                             Crear Producto    
                         </btn>
                     </Link>
-                    <Link to='#'>
+                    <Link to='/admin/products/modify'>
                         <btn className='btn btn-lg btn-primary adm__btn'>
                             Modificar Producto    
                         </btn>

@@ -19,7 +19,9 @@ import LogOut from './Components/LogOut/LogOut';
 import Admin from './Components/pages/Admin/Admin';
 import CrearProducto from './Components/pages/CrearProducto/CrearProducto';
 
-
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
+import ModificarProducto from './Components/pages/ModificarProducto/ModificarProducto';
+import Tabla from './Components/pages/ModificarProducto/Tabla';
 function App() {
 
 
@@ -41,10 +43,12 @@ function App() {
           <Route exact path='/careers' component={Careers}></Route>
           <Route exact path='/viewJobs' component={viewJobs}></Route>
           <Route exact path='/vacante' component={Vacante}></Route>
-          GoToTop  <Route exact path='/carrito' component={Carrito}></Route>
+          <Route exact path='/carrito' component={Carrito}></Route>
           <Route exact path='/logOut' component={LogOut}></Route>
           <Route exact path='/admin' component={Admin}></Route>
           <Route exact path='/admin/products/create' component={CrearProducto}></Route>
+          <Route exact path='/admin/products/modify' component={ModificarProducto}></Route>
+          <Route exact path='/admin/products/modify/product' component={Tabla}></Route>
         </Switch>
 
 

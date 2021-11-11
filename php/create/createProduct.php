@@ -9,5 +9,5 @@ $product = new Product(
     $data->inventario, $data->imagen, $data->categoria
 );
 
-$msg = (createProduct($product))?  'done': 'error';
+$msg = createProduct($product);
 echo json_encode($msg);

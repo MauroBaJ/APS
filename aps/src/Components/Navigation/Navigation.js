@@ -3,6 +3,7 @@ import './Navigation.css'
 import {Link} from 'react-router-dom';
 import NAV__LINK from './NAV__LINK';
 import NAV__LINK_IMG from './NAV__LINK_IMG'
+import '../../../node_modules/bootstrap/dist/js/bootstrap.bundle'
 
 export default function Navigation() {
 
