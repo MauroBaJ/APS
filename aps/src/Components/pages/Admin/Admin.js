@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import './Admin.css'
 
 export default class Admin extends Component {
+
+    
+
     render() {
+
+        const isAdmin = sessionStorage.getItem('privileges') == 'admin'
+
+
         return (
-            <main className='admin__main'>
+            isAdmin ? <main className='admin__main'>
                 <h1 className='admin__h1'>
                     Panel de Administracion
                 </h1>
@@ -33,6 +40,7 @@ export default class Admin extends Component {
 
                 </div>
             </main>
+            :<Redirect to='/' />
         )
     }
 }

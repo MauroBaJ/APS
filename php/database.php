@@ -5,7 +5,7 @@
         $db = new PDO(
             'mysql:host=localhost; dbname=aps',
             'admonAPS',
-            'APS2021'
+            'Artefactos_2021'
         );
         $db->query("set names utf8;");
         

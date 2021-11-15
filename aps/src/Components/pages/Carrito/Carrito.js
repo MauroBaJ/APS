@@ -43,7 +43,7 @@ export default function Carrito() {
                             <td>{item.name}</td>
                             <td>{item.cantidad}</td>
                             <td>${item.precio}</td>
-                            <td>{ (item.cantidad) * (item.precio) }</td>
+                            <td>${ ((item.cantidad) * (item.precio)).toFixed(2) }</td>
                             <td>
                                 <btn className='btn__delete' value='Delete'
                                 onClick={(e) => {delProduct(item.id)} }>

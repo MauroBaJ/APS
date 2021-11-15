@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router';
 import './CreateAccount.css'
 
 export const CreateAccount = () => {
@@ -39,8 +40,9 @@ export const CreateAccount = () => {
             body: body
         })
         .catch(e = () => console.log(e))
-        // if(respuesta) console.log('Okey Dokey');
-        // else console.log('Nel pastel');
+
+        alert('Usuario registrado, ahora debe iniciar sesion');
+        window.location.href = '/login'
 
     }
 
