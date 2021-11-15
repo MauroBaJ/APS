@@ -1,0 +1,67 @@
+.cv__container{
+    background-color: white;
+    width: 90%;
+    margin: 2rem auto 4rem auto;
+    padding: 2rem;
+    border-radius: 2rem;
+    box-shadow: 0.2rem 2rem 2rem rgba(0, 0, 0, 0.52);
+}
+
+.op__form{
+    margin: 3rem 1rem;
+}
+.op__fieldset legend{
+    background-color: white;
+    padding: 0.5rem;
+    text-align: left;
+    background: white;
+    margin-top: -1.5rem;
+    width: auto;
+
+}
+.op__fieldset{
+    /* border: 1px black dotted; */
+    box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.3);
+    border-radius: 1rem;
+    width: 95%;
+    font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 3rem auto;
+}
+
+.op__fieldset__div{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+.op__fieldset__div label{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.op__fieldset__div input{
+    border: none;
+    border-bottom: 1px solid grey;
+}
+.op__fieldset__div textarea{
+    border: 1px solid grey;
+    width: 100%;
+    height: min(30%, 30rem);
+    font-size: 1.6rem;
+}
+
+@media (min-width: 768px){
+    .op__fieldset__div{
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .op__fieldset__div label{
+        margin-bottom: 0;
+        margin-right: 1rem;
+    }
+    .op__fieldset__div input, select{
+        flex-grow: 1;
+    }
+}

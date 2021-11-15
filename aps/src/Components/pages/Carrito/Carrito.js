@@ -72,7 +72,7 @@ export default function Carrito() {
             </table>
 
             <Link to='#' >
-                <btn className='btn btn-lg btn-secondary'>Proceder al pago</btn>
+                <btn className='btn btn-lg btn-primary'>Proceder al pago</btn>
             </Link>
 
         </main>
