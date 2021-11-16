@@ -21,7 +21,8 @@ if(fetchAdmin($email, $password)){
     $msg = json_encode($response);
 }
 else if (fetchUser($email, $password)){
-    $response = ['loggedIn', 'USER'];
+    $id = getUserID($email);
+    $response = ['loggedIn', 'USER', $id];
     $msg = json_encode($response);
 }  
 else $msg = json_encode('no');

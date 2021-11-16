@@ -71,6 +71,7 @@ class Login extends Component {State
             if(exitoso[1] == 'USER'){
                 sessionStorage.setItem('state', true)
                 sessionStorage.setItem('privileges', 'user')
+                sessionStorage.setItem('uID', exitoso[2][0].idUsuario);
             }else{
                 sessionStorage.setItem('state', true)
                 sessionStorage.setItem('privileges', 'admin')

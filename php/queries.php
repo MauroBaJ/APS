@@ -4,13 +4,14 @@ require('database.php');
 require('auth.php');
 
 //Import de clases
-include './clases/Aplicante.php';
-include './clases/Compra.php';
-include './clases/Direccion.php';
-include './clases/Producto.php';
-include './clases/Tarjeta.php';
-include './clases/Usuario.php';
-include './clases/Vacante.php';
+include('./clases/Aplicante.php');
+include('./clases/Compra.php');
+include('./clases/Direccion.php');
+include('./clases/Producto.php');
+include('./clases/Tarjeta.php');
+include('./clases/Usuario.php');
+include('./clases/Vacante.php');
+
 
 /** TODO
  *  Aplicante -> RD
@@ -27,13 +28,15 @@ include './clases/Vacante.php';
 
 //Funciones auxiliares para tablas pivote
 
-function getUserID(){
-    $user = $_SESSION['usuario'];
+function getUserID($email){
     $bd = conectarBD();
-    $query = $bd->prepare(" SELECT idUsuario FROM Usuario WHERE Email = ? ");
-    $r = $query->execute([$user]);
-    return $r;
+    $query = $bd->prepare( "SELECT idUsuario FROM Usuario WHERE Email = ?" );
+    $query->execute([$email]);
+    $res= $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+    return $res;
 }
+
 function getCardID($val){
     $user = $_SESSION['usuario'];
     $bd = conectarBD();
@@ -95,6 +98,7 @@ function createAdmin($user){
 }
 
 function createProduct($product){
+
     $bd = conectarBD();
     $query = $bd->prepare("INSERT INTO Producto
     (Nombre, Descripcion, Precio, Inventario, Imagen, Categoria)
@@ -123,20 +127,10 @@ function createCard($card){
     $res = $query->execute(
         $card->Numero,
         $card->Nombre,
-        $card->Month,//TODO
+        $card->Month,
         $card->Year,
         $card->CVV
-    );//TODO
-
-    if($res){
-        $user = getUserID();
-        $plastic = getCardID($card->Numero);
-        $query = $bd->prepare(
-            "INSERT INTO usuarioTarjeta(idUsuario, idTarjeta)
-            VALUES (?, ?)"
-        );
-        $r = $query->execute($user, $plastic);
-    }
+    );
 
     cerrarBD($bd);
 }
@@ -154,16 +148,6 @@ function createAddress($direccion){
         $direccion->Estado, $direccion->CP
     ]);
 
-    if($res){
-        $user =getUserID();
-        $idDireccion = getAddressID($direccion);
-        $query = $bd->prepare("
-            INSERT INTO usuarioDireccion
-            (idUsuario, idDireccion)
-            VALUES(?, ?)
-        ");
-        $r = $query->execute([$user, $idDireccion]);
-    }
     
     cerrarBD($bd);
 
@@ -252,21 +236,17 @@ function fetchAdmin($email, $password){
     } 
 }
 
-function fetchCard(){
-    $user = getUserID();
+function fetchCard($id){
     $bd = conectarBD();
     $query = $bd->prepare(
-        "SELECT T.Nombre, T.Numero FROM Tarjeta as T
-        RIGHT JOIN usuarioTarjeta as UT
-        ON T.idTarjeta = UT.idTarjeta
-        WHERE UT.idUsuario = ? "
-    );
-
-    $query->execute($user);
-    $resultado = $query->fetchAll();
+    "SELECT * FROM Tarjeta
+    INNER JOIN usuarioTarjeta uT on Tarjeta.idTarjeta = uT.idusuarioTarjeta
+    WHERE uT.idUsuario = ?;
+    ");
+    $query->execute([$id]);
+    $result =  $query->fetchAll(PDO::FETCH_ASSOC);
     cerrarBD($bd);
-
-    return $resultado;
+    return $result;
 }
 
 function fetchArticulos(){

@@ -71,7 +71,7 @@ export default function Carrito() {
                 </tfoot>
             </table>
 
-            <Link to='#' >
+            <Link to='/carrito/pago' >
                 <btn className='btn btn-lg btn-primary'>Proceder al pago</btn>
             </Link>
 
