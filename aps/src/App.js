@@ -26,6 +26,7 @@ import CrearVacante from './Components/pages/CrearVacante/CrearVacante';
 import TablaVacantes from './Components/pages/ModificarVacante/TablaVacantes';
 import ModificarVacante from './Components/pages/ModificarVacante/ModificarVacante';
 import ProcesoPago from './Components/pages/ProcesoPago/ProcesoPago';
+import AddNewCard from './Components/pages/ProcesoPago/AddNewCard';
 function App() {
 
 
@@ -57,6 +58,7 @@ function App() {
           <Route exact path='/admin/careers/modify'component={TablaVacantes} ></Route>
           <Route exact path='/admin/careers/modify/opening' component={ModificarVacante}></Route>
           <Route exact path='/carrito/pago' component={ProcesoPago}></Route>
+          <Route exact path='/carrito/pago/nuevaTarjeta' component={AddNewCard}></Route>
         </Switch>
 
 

@@ -125,14 +125,15 @@ function createCard($card){
     );
 
     $res = $query->execute(
-        $card->Numero,
+[        $card->Numero,
         $card->Nombre,
         $card->Month,
         $card->Year,
-        $card->CVV
+        $card->CVV]
     );
 
     cerrarBD($bd);
+    return $res;
 }
 
 function createAddress($direccion){
@@ -240,13 +241,24 @@ function fetchCard($id){
     $bd = conectarBD();
     $query = $bd->prepare(
     "SELECT * FROM Tarjeta
-    INNER JOIN usuarioTarjeta uT on Tarjeta.idTarjeta = uT.idusuarioTarjeta
-    WHERE uT.idUsuario = ?;
+    JOIN usuarioTarjeta uT on Tarjeta.idTarjeta = uT.idTarjeta
+    WHERE idUsuario = ?
     ");
     $query->execute([$id]);
     $result =  $query->fetchAll(PDO::FETCH_ASSOC);
     cerrarBD($bd);
     return $result;
+}
+function fetchCardID($num){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "SELECT idTarjeta FROM Tarjeta
+        WHERE Numero = ?"
+    );
+    $query->execute([$num]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+    return $res;
 }
 
 function fetchArticulos(){
@@ -358,5 +370,16 @@ function deleteOpening($id){
     ");
 
     $res = $query->execute([$id]);
+    return $res;
+}
+
+
+function pivoteUsuarioTarjeta($u, $t){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "CALL pivoteUsuarioTarjeta(?, ?)"
+    );
+    $res = $query->execute([$u, $t]);
+    cerrarBD($bd);
     return $res;
 }
