@@ -8,6 +8,13 @@ export default function ProcesoPago() {
 
     const [tarjetas, setTarjetas] = useState([]);
 
+    const pagos = {
+        tarjeta: '',
+        direccion: ''
+    }
+
+    const onChange = (e) => { [pagos.tarjeta] = e.target.value }
+
     const fetchCards = async () => {
         const userID = sessionStorage.getItem('uID');
         const body = JSON.stringify(userID);
@@ -21,7 +28,8 @@ export default function ProcesoPago() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('something');
+        localStorage.setItem('paymentInfo', JSON.stringify(pagos));
+        window.location = '/carrito/direccion';
     }
 
     useEffect( () => fetchCards(), [])
@@ -34,7 +42,7 @@ export default function ProcesoPago() {
                     {tarjetas
                     ? tarjetas.map( (t) =>
                         <div className='cont-card'>
-                            <input type='radio' value={t.idTarjeta} name='tarjeta'></input>
+                            <input required='required' onChange={e => onChange(e)} type='radio' value={t.idTarjeta} name='tarjeta'></input>
                             <Tarjeta
                             nombre = {t.Nombre}
                             numero = {t.Numero}
