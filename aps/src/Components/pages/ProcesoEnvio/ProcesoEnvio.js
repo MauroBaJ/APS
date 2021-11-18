@@ -24,7 +24,7 @@ export default function ProcesoEnvio() {
         e.preventDefault();
         localStorage.setItem('direccion', JSON.stringify(pagos));
 
-        window.location = '/';
+        window.location = '/carrito/compra/confirmar';
     }
 
     useEffect(() => fetchDirecciones(), []);
@@ -56,7 +56,7 @@ export default function ProcesoEnvio() {
                     :<p> parece que no tienes direcciones registradas </p>}
                 
                         <button type='submit' className=' m-5 btn btn-primary btn-lg'>
-                            Seleccionar Tarjeta
+                            Seleccionar Direccion
                         </button>
                     </form>
                 </section>

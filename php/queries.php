@@ -324,6 +324,25 @@ function fetchVacante($id){
     return $res;
 }
 
+function fetchDetalles($idUsuario, $idDireccion, $idTarjeta){
+    $bd = conectarBD();
+    $query = $bd->prepare("
+        SELECT Direccion, Numero, U.Nombre
+        FROM Direccion
+        LEFT JOIN usuarioDireccion uD on Direccion.idDireccion = uD.idDireccion
+        LEFT JOIN usuarioTarjeta uT on uD.idUsuario = uT.idUsuario
+        LEFT JOIN Tarjeta T on uT.idTarjeta = T.idTarjeta
+        LEFT JOIN Usuario U on uD.idUsuario = U.idUsuario
+        WHERE uD.idUsuario = ?
+        AND uD.idDireccion = ?
+        AND T.idTarjeta = ?"
+    );
+    $query->execute([$idUsuario, $idDireccion, $idTarjeta]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+    return $res;
+}
+
 // U
 
 function updateProduct($product, $id){
@@ -404,6 +423,24 @@ function pivoteUsuarioDireccion($u, $t){
         "CALL pivoteUsuarioDireccion(?, ?)"
     );
     $res = $query->execute([$u, $t]);
+    cerrarBD($bd);
+    return $res;
+}
+
+function eliminarArticulo($id, $cantidad){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "CALL eliminarArticulo(?, ?)"
+    );
+    $res = $query->execute([$id, $cantidad]);
+    cerrarBD($bd);
+    return $res;
+}
+
+function realizarCompra($idUsuario, $idDireccion, $idTarjeta, $total){
+    $bd = conectarBD();
+    $query = $bd->prepare( "CALL insertarCompra(?, ?, ?, ?)" );
+    $res = $query->execute([$idUsuario, $idDireccion, $idTarjeta, $total]);
     cerrarBD($bd);
     return $res;
 }

@@ -15,6 +15,7 @@ export default function Carrito() {
         str.map( item =>{
             tot += (item.cantidad) * (item.precio)
         })
+        localStorage.setItem('Total', tot)
         return tot
     } 
 

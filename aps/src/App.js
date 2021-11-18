@@ -28,6 +28,8 @@ import ModificarVacante from './Components/pages/ModificarVacante/ModificarVacan
 import ProcesoPago from './Components/pages/ProcesoPago/ProcesoPago';
 import AddNewCard from './Components/pages/ProcesoPago/AddNewCard';
 import ProcesoEnvio from './Components/pages/ProcesoEnvio/ProcesoEnvio';
+import Compra from './Components/pages/Compra/Compra';
+import RealizarCompra from './Components/pages/Compra/RealizarCompra';
 function App() {
 
 
@@ -60,6 +62,8 @@ function App() {
           <Route exact path='/carrito/pago' component={ProcesoPago}></Route>
           <Route exact path='/carrito/pago/nuevaTarjeta' component={AddNewCard}></Route>
           <Route exact path='/carrito/direccion' component={ProcesoEnvio}></Route>
+          <Route exact path='/carrito/compra/confirmar' component={Compra}></Route>
+          <Route exact path='/carrito/compra/realizar' component={RealizarCompra}></Route>
         </Switch>
 
 
