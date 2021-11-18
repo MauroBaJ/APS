@@ -13,19 +13,6 @@ include('./clases/Usuario.php');
 include('./clases/Vacante.php');
 
 
-/** TODO
- *  Aplicante -> RD
- *  Compra -> CR
- *  Direccion -> R
- *  Producto -> RUD
- *  Tarjeta -> R
- *  usuarioDireccion -> R
- *  vacanteAplicante -> R
- *  Vacante -> CUD
- */
-
-
-
 //Funciones auxiliares para tablas pivote
 
 function getUserID($email){
@@ -151,6 +138,7 @@ function createAddress($direccion){
 
     
     cerrarBD($bd);
+    return $res;
 
 }
 
@@ -260,6 +248,18 @@ function fetchCardID($num){
     cerrarBD($bd);
     return $res;
 }
+function fetchAddressID($direccion){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "SELECT idDireccion FROM Direccion
+        WHERE Direccion = ?"
+    );
+    $query->execute([$direccion]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+    return $res;
+}
+
 
 function fetchArticulos(){
     $bd = conectarBD();
@@ -269,6 +269,21 @@ function fetchArticulos(){
     ");
 
     $query->execute();
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+
+    return $res;
+}
+
+function fetchAddresses($id){
+    $bd = conectarBD();
+    $query = $bd->prepare("
+    SELECT * FROM Direccion
+    INNER JOIN usuarioDireccion uD on Direccion.idDireccion = uD.idDireccion
+    WHERE idUsuario = ?
+    ");
+
+    $query->execute([$id]);
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
     cerrarBD($bd);
 
@@ -378,6 +393,15 @@ function pivoteUsuarioTarjeta($u, $t){
     $bd = conectarBD();
     $query = $bd->prepare(
         "CALL pivoteUsuarioTarjeta(?, ?)"
+    );
+    $res = $query->execute([$u, $t]);
+    cerrarBD($bd);
+    return $res;
+}
+function pivoteUsuarioDireccion($u, $t){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "CALL pivoteUsuarioDireccion(?, ?)"
     );
     $res = $query->execute([$u, $t]);
     cerrarBD($bd);

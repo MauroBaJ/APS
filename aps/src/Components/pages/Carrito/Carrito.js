@@ -5,6 +5,10 @@ import {Link} from 'react-router-dom'
 export default function Carrito() {
 
     const str = JSON.parse(localStorage.getItem('products'));
+    if(str == null){
+        alert('El carrito esta vacio')
+        window.location = '/tienda'
+    }
 
     const total = (str) =>{
         let tot = 0
@@ -36,7 +40,7 @@ export default function Carrito() {
                     </tr>
                 </thead>
                 <tbody>
-                {str 
+                {(str !== null)
                     ?str.map( item =>
                         <tr className='carrito__table__trow'>
                             <td>{item.id}</td>

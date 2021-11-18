@@ -1,35 +1,37 @@
 import React, {useEffect, useState} from 'react'
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Direcciones from './Direcciones';
 
 export default function ProcesoEnvio() {
 
-    const [direccion, setDireccion] = useState({
-        calle:'',
-        next:'',
-        nint: '',
-        colonia:'',
-        ciudad:'',
-        cp:'',
-        estado:''
-    })
+    const [direcciones, setDirecciones] = useState([]);
+    const userID = sessionStorage.getItem('uID');
+    let pagos = ''
 
-    const submitNewAddress = (e) => {
+
+    const fetchDirecciones = async () =>{
+        const body = JSON.stringify(userID);
+        const request = await fetch(
+            'http://localhost:8000/fetch/fetchAddresses.php',
+            {method:'POST', body:body}
+        )
+        const response = await request.json();
+        setDirecciones(response);
+    }
+
+    const onSubmit =(e)  =>{
         e.preventDefault();
-        const addr = `${direccion.calle} ${direccion.next} ${direccion.nint}`;
-        const body = JSON.stringify({
-            direccion: addr,
-            colonia: direccion.colonia,
-            ciudad :direccion.ciudad,
-            estado : direccion.estado,
-            cp: direccion.cp
-        });
-        console.log(body);
+        localStorage.setItem('direccion', JSON.stringify(pagos));
 
+        window.location = '/';
     }
 
-    const pagos = JSON.parse(localStorage.getItem('paymentInfo'));
-    const onChange = (e) => {
-        setDireccion({...direccion, [e.target.name] : e.target.value})
-    }
+    useEffect(() => fetchDirecciones(), []);
+    console.log(direcciones);
+
+    const onChange = (e) => pagos = e.target.value;
+
 
     return (
         <div className='m'>
@@ -37,91 +39,31 @@ export default function ProcesoEnvio() {
                 className='cont d-flex flex-sm-column flex-md-column flex-lg-row  justify-content-between p-5'>
                 <section className='w-100'>
                     <h2 className='display-2 fw-bold text-uppercase mb-5'>Elige una de tus direcciones</h2>
+                    <form className='d-flex flex-column' onSubmit={ e => onSubmit(e)}>
+                    {direcciones
+                    ? direcciones.map( (t) =>
+                        <div className='border rounded d-flex w-100'>
+                            <input 
+                            required='required' onChange={e => onChange(e)}
+                             type='radio' value={t.idDireccion} name='direccion'>
+                            </input>
+                            <div>
+                                <h3 className='display-3 fw-bold'>{t.Direccion}</h3>
+                                <p className='display-4'>{`${t.Colonia}, ${t.Ciudad}, ${t.Estado}. CP.${t.CP}`}</p>
+                            </div>
+                        </div>
+                    )
+                    :<p> parece que no tienes direcciones registradas </p>}
+                
+                        <button type='submit' className=' m-5 btn btn-primary btn-lg'>
+                            Seleccionar Tarjeta
+                        </button>
+                    </form>
                 </section>
                 <p>o</p>
                 <aside className='w-100'>
                     <h2 className='display-2 fw-bold text-uppercase mb-5'>Agrega una nueva direccion</h2>
-                    <form className='formulario' onSubmit={e => submitNewAddress(e)}>
-                        <fieldset className='formulario__fieldset'>
-                            <legend>Direccion</legend>
-                            <div className='formulario__input d-flex justify-content-between'>
-                                <label for='calle' className='m-2'>Calle</label>
-                                <input
-                                    id='calle'
-                                    name='calle'
-                                    required='required'
-                                    onChange={e => onChange(e)}
-                                    className='w-100'
-                                    type='text'></input>
-                            </div>
-                            <div className='formulario__input d-flex justify-content-between'>
-                                <label for='next' className='m-2'>Numero Exterior</label>
-                                <input
-                                    id='next'
-                                    name='next'
-                                    required='required'
-                                    onChange={e => onChange(e)}
-                                    className='w-100'
-                                    type='text'></input>
-                            </div>
-                            <div className='formulario__input d-flex justify-content-between'>
-                                <label for='nint' className='m-2'>Numero Interior *</label>
-                                <input
-                                    id='nint'
-                                    name='nint'
-                                    onChange={e => onChange(e)}
-                                    className='w-100'
-                                    type='text'></input>
-                            </div>
-                        </fieldset>
-                        <fieldset className='formulario__fieldset'>
-                            <legend>Ubicacion</legend>
-                            <div className='formulario__input d-flex justify-content-between'>
-                                <label for='colonia' className='m-2'>Colonia</label>
-                                <input
-                                    id='colonia'
-                                    name='colonia'
-                                    required='required'
-                                    onChange={e => onChange(e)}
-                                    className='w-100'
-                                    type='text'></input>
-                            </div>
-                            <div className='formulario__input d-flex justify-content-between'>
-                                <label for='ciudad' className='m-2'>Ciudad</label>
-                                <input
-                                    id='ciudad'
-                                    name='ciudad'
-                                    required='required'
-                                    onChange={e => onChange(e)}
-                                    className='w-100'
-                                    type='text'></input>
-                            </div>
-                            <div className='formulario__input d-flex justify-content-between'>
-                                <label for='cp' className='m-2'>CP</label>
-                                <input
-                                    id='cp'
-                                    name='cp'
-                                    required='required'
-                                    onChange={e => onChange(e)}
-                                    className='w-100'
-                                    type='number'
-                                    min='00001'
-                                    max='99999'></input>
-                            </div>
-                            <div className='formulario__input d-flex justify-content-between'>
-                                <label for='estado' className='m-2'>Estado</label>
-                                <input
-                                    id='estado'
-                                    name='estado'
-                                    required='required'
-                                    onChange={e => onChange(e)}
-                                    className='w-100'
-                                    type='text'
-                                    ></input>
-                            </div>
-                        </fieldset>
-                        <button className='btn btn-lg btn-primary'>Agregar Direccion</button>
-                    </form>
+                    <Direcciones />
                 </aside>
             </main>
         </div>

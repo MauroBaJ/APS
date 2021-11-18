@@ -8,12 +8,11 @@ export default function ProcesoPago() {
 
     const [tarjetas, setTarjetas] = useState([]);
 
-    const pagos = {
-        tarjeta: '',
-        direccion: ''
-    }
+    let pagos = ''
 
-    const onChange = (e) => { [pagos.tarjeta] = e.target.value }
+    console.log(tarjetas);
+
+    const onChange = (e) => pagos = e.target.value;
 
     const fetchCards = async () => {
         const userID = sessionStorage.getItem('uID');
@@ -28,7 +27,7 @@ export default function ProcesoPago() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        localStorage.setItem('paymentInfo', JSON.stringify(pagos));
+        localStorage.setItem('tarjeta', JSON.stringify(pagos));
         window.location = '/carrito/direccion';
     }
 
