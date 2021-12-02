@@ -6,6 +6,6 @@ $data = json_decode(file_get_contents("php://input"));
 
 $mes = $data->month;
 
-$msg  = ventaMensual($mes);
+$msg  = ventaPorEstado($mes);
 
 if($msg) echo json_encode($msg);

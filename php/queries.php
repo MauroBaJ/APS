@@ -456,3 +456,28 @@ function ventaMensual($mes){
     cerrarBD($bd);
     return $res;
 }
+
+function ventaPorEstado($mes){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "SELECT COUNT(D.Estado) AS Total, D.Estado FROM Direccion as D
+        inner join Compra C on D.idDireccion = C.idDireccion
+        where  monthname(C.Fecha) = ?
+        GROUP BY D.Estado;"
+    );
+    $query->execute([$mes]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+    return $res;
+}
+
+function ventaPorCliente($mes){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "SELECT Nombre, COUNT(idCliente) as Cuenta FROM Usuario
+        LEFT JOIN Compra C on Usuario.idUsuario = C.idCliente
+        WHERE Monthname(C.Fecha) = ?
+        GROUP BY Nombre ORDER BY  Cuenta ASC"
+    ):
+    cerrarBD($bd);
+}

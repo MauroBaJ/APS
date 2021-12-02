@@ -1,0 +1,30 @@
+.reportes_acomodo{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor_reporte{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+}
+
+@media (min-width: 768px){
+    .reportes_acomodo{
+        display: grid;
+        column-gap: 2rem;
+        row-gap: 2rem;
+        grid-template-areas: 
+        "a b"
+        "c b";
+    }
+
+    .rb{ grid-area: "b"; }
+    .ra{grid-area: "a";}
+    .rc{grid-area: "c";}
+}
