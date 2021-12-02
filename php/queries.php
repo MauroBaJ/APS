@@ -443,3 +443,16 @@ function realizarCompra($idUsuario, $idDireccion, $idTarjeta, $total){
     cerrarBD($bd);
     return $res;
 }
+
+
+//Reportes
+
+function ventaMensual($mes){
+    $bd = conectarBD();
+    $query = $bd->prepare
+    ("SELECT * FROM Compra WHERE monthname(Fecha) = ?");
+    $query->execute([$mes]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+    return $res;
+}

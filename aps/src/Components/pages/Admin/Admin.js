@@ -37,6 +37,11 @@ export default class Admin extends Component {
                             Modificar Vacante
                         </btn>
                     </Link>
+                    <Link to='/admin/ventas/mensuales'>
+                        <btn className='btn btn-lg btn-primary adm__btn'>
+                            Ventas Mensuales
+                        </btn>
+                    </Link>
 
                 </div>
             </main>
