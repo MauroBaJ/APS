@@ -7,7 +7,7 @@ export default function Card(props) {
     return (
         <div className="col-md-4">
         <div className="card card__container">
-            <div className="card-body">
+            <div className="card-body border rounded">
                 <h2 className="card-title">{props.titulo}</h2>
                 <p className='card__text'>{props.text}
                 </p>

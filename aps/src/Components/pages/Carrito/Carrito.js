@@ -27,7 +27,7 @@ export default function Carrito() {
     } 
 
     return (
-        <main className='carrito__main'>
+        <main className='carrito__main m'>
             <h1 className='carrito__h1'>Tu carrito de compras</h1>
             <table className='carrito__table'>
                 <thead>

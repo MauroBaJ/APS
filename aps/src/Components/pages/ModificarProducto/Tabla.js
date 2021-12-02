@@ -1,7 +1,7 @@
 import React from 'react'
-import FormProduct from '../../FormProduct/FormProduct';
 import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import FormProduct2 from '../../FormProduct/FormProduct2';
 
 export default function Tabla(props) {
 
@@ -38,7 +38,7 @@ export default function Tabla(props) {
                 <p>Sabemos que es tedioso, pero por favor llena todos los campos desde 0.</p>
                 <p>Esto lo hacemos para garantizar que el producto quede correctamente formateado.</p>
             </div>
-            <FormProduct 
+            <FormProduct2
                 address = 'http://localhost:8000/update/updateProduct.php'
                 mensaje='Modificado'
                 id={id}

@@ -356,11 +356,10 @@ function updateProduct($product, $id){
 
 
     $result = $query->execute([
-         $product->Nombre, $product->Descripcion, $product->Precio,
-         $product->Inventario, $product->Imagen, $product->Categoria,
-         $id
-     ]);
-
+        $product->Nombre, $product->Descripcion, $product->Precio,
+    $product->Inventario, $product->Imagen, $product->Categoria,
+    $id
+    ]);
 
     cerrarBD($bd);
     return $result;

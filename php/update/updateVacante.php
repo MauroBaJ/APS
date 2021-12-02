@@ -5,10 +5,9 @@ require('../queries.php');
 
 $data = json_decode(file_get_contents('php://input'));
 
-
 $vacante = new Vacante(
-    $data->nombre, $data->departamento, $data->descripcion);
-$id = $data->id;
+    $data->Nombre, $data->Categoria, $data->Descripcion);
+$id = $data->idVacantes;
 
 $msg = updateVacante($vacante, $id);
 echo json_encode($msg);

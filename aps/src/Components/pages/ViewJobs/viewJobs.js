@@ -21,7 +21,7 @@ function ViewJobs() {
 
     return (
         
-        <div className='portal__main'>
+        <div className='m'>
             <h1 className='portal__titulo'>Vacantes Disponibles</h1>
             <main className=' portal__contenedor'>
                 {jobs.map(job => 

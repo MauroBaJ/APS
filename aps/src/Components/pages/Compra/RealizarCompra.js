@@ -36,6 +36,7 @@ export default function RealizarCompra() {
     
     realizarCompra()
     alert('Compra realizada con éxito, su pedido se enviará a la breveda');
+    localStorage.clear();
     window.location = '/';
 
     return (

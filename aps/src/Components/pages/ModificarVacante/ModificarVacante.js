@@ -1,7 +1,7 @@
 import './ModificarVacante.css'
 import { Redirect } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
-import FormOpening from '../../FormOpening/FormOpening';
+import FormOpening2 from '../../FormOpening/FormOpening2';
 
 export default function ModificarVacante(props) {
 
@@ -19,28 +19,26 @@ export default function ModificarVacante(props) {
             {method: 'POST', body: body}
         ).catch(e => console.log(e));
         const p = await request.json();
-        setVacante(p)
+        setVacante(p[0])
     }
 
     useEffect(() => {
         pedirVacante(id)
     }, [])
 
-    const {Nombre} = vacante;
+    const {idVacantes} = vacante;
 
     return (
         isAdmin?
 
         <div className='m'>
             <div className='mensaje'>
-                <h1>Modificando Vacante {Nombre}</h1>
-                <p>Sabemos que es tedioso, pero por favor llena todos los campos desde 0.</p>
-                <p>Esto lo hacemos para garantizar que la vacante quede correctamente formateada.</p>
+                <h1>Modificando Vacante</h1>
             </div>
             <main className='cv__container'>
-            <FormOpening
+            <FormOpening2
             link='http://localhost:8000/update/updateVacante.php'
-            id={id}
+            id={idVacantes}
             message='Actualizada'
             />
 

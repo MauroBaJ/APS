@@ -17,7 +17,6 @@ export default function FormProduct(props) {
     const {Nombre, Descripcion, Precio, Inventario, Imagen, Categoria, id} = product;
     const address = props.address, mensaje = props.mensaje;
 
-
     const onChange = (e) => setProduct({...product, [e.target.name]: e.target.value});
 
     const onSubmit = async (e)  =>{
