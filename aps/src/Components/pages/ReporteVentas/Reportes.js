@@ -15,12 +15,12 @@ export default function Reportes() {
                     <VentasMensuales />
                     </div>
 
-                    <div className="contenedor_reporte rb">
-                    <VentasXEstado />
-                    </div>
-
                     <div className='contenedor_reporte rc'>
                     <ReporteMejoresClientes />
+                    </div>
+
+                    <div className="contenedor_reporte rb">
+                    <VentasXEstado />
                     </div>
                 </article>
             </div>

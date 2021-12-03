@@ -72,17 +72,17 @@ export default function VentasMensuales(props) {
         return (
             <div>
                 <section className="ventas_total">
-                    <h2 className="display-3">
+                    <h2 className="h2-ventas">
                         Total de ventas del mes de {mesesESP[Month]}
                     </h2>
-                    <p className='fw-bold display-5'>${recaudacion}
+                    <p className='cantidad-ventas'>${recaudacion}
                     </p>
                 </section>
                 <section className="ventas_total">
-                    <h2 className="display-4">
+                    <h2 className="h2-ventas">
                         Numero de ventas
                     </h2>
-                    <p className='fw-bold display-6'>{count}
+                    <p className='cantidad-ventas'>{count}
                     </p>
                 </section>
             </div>

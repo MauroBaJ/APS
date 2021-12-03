@@ -474,10 +474,16 @@ function ventaPorEstado($mes){
 function ventaPorCliente($mes){
     $bd = conectarBD();
     $query = $bd->prepare(
-        "SELECT Nombre, COUNT(idCliente) as Cuenta FROM Usuario
-        LEFT JOIN Compra C on Usuario.idUsuario = C.idCliente
-        WHERE Monthname(C.Fecha) = ?
-        GROUP BY Nombre ORDER BY  Cuenta ASC"
-    ):
+        "SELECT SUM(Total) as Monto, COUNT(idCliente) as Cantidad,
+        idUsuario, Nombre FROM Compra
+        join Usuario U on U.idUsuario = Compra.idCliente
+        WHERE Monthname(Fecha) = ?
+        GROUP BY  idUsuario
+        ORDER BY Monto DESC
+        LIMIT 5"
+    );
+    $query->execute([$mes]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
     cerrarBD($bd);
+    return $res;
 }

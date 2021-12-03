@@ -95,7 +95,7 @@ export const CreateAccount = () => {
 
                     <fieldset className='form__campo'>
                         <label for='Telefono' className='form__label' >Ingrese su teléfono</label>
-                        <input required type='number' name='Telefono' id='Telefono' className='form__input'onChange={onChange}></input>
+                        <input required type='number' name='Telefono' id='Telefono' className='form__input'onChange={onChange} min='0000000000001' max='9999999999999'></input>
                     </fieldset>
 
                     <p><em>* - Opcional</em></p>

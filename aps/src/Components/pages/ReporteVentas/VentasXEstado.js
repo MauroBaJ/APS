@@ -38,8 +38,8 @@ export default function VentasXEstado(props) {
         <div>
             <h3 className='display-5'>Ventas x Estado</h3>
             <Chart 
-                width={'100%'}
-                height={'100%'}
+                width={'500px'}
+                height={'500px'}
                 chartType="PieChart"
                 loader={<div>Cargando Datos</div>}
                 data={datos}
