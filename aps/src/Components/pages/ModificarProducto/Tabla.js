@@ -35,8 +35,8 @@ export default function Tabla(props) {
         <div className='m'>
             <div className='mensaje'>
                 <h1>Modificando Producto {Nombre}</h1>
-                <p>Sabemos que es tedioso, pero por favor llena todos los campos desde 0.</p>
-                <p>Esto lo hacemos para garantizar que el producto quede correctamente formateado.</p>
+                {/* <p>Sabemos que es tedioso, pero por favor llena todos los campos desde 0.</p>
+                <p>Esto lo hacemos para garantizar que el producto quede correctamente formateado.</p> */}
             </div>
             <FormProduct2
                 address = 'http://localhost:8000/update/updateProduct.php'

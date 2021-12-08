@@ -93,14 +93,14 @@ export default function FormProduct2(props) {
                 <fieldset className='formulario__fieldset'>
                     <legend>Gestion del Producto</legend>
                     <div className='formulario__input'>
-                        <label for='inventario' className='formulario__input__label'>Inventario del producto</label>
+                        <label for='Inventario' className='formulario__input__label'>Inventario del producto</label>
                         <input
                             onChange={onChange}
                             type='number'
                             className='formulario__input__input'
                             required='required'
-                            id='inventario'
-                            name='inventario'
+                            id='Inventario'
+                            name='Inventario'
                             defaultValue={product.Inventario}
                             min={product.Inventario}></input>
                     </div>

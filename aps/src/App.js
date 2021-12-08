@@ -31,6 +31,7 @@ import ProcesoEnvio from './Components/pages/ProcesoEnvio/ProcesoEnvio';
 import Compra from './Components/pages/Compra/Compra';
 import RealizarCompra from './Components/pages/Compra/RealizarCompra';
 import Reportes from './Components/pages/ReporteVentas/Reportes';
+import Solicitudes from './Components/pages/Solicitudes/Solicitudes';
 function App() {
 
 
@@ -60,6 +61,7 @@ function App() {
           <Route exact path='/admin/careers/create' component={CrearVacante} ></Route>
           <Route exact path='/admin/careers/modify'component={TablaVacantes} ></Route>
           <Route exact path='/admin/careers/modify/opening' component={ModificarVacante}></Route>
+          <Route exact path='/admin/careers/applier' component={Solicitudes}></Route>
           <Route exact path='/carrito/pago' component={ProcesoPago}></Route>
           <Route exact path='/carrito/pago/nuevaTarjeta' component={AddNewCard}></Route>
           <Route exact path='/carrito/direccion' component={ProcesoEnvio}></Route>

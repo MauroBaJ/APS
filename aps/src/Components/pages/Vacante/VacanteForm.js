@@ -18,9 +18,21 @@ export default function VacanteForm(props) {
         [e.target.name]: e.target.value
     })
 
-    const onSubmit = (e) => {
+    const body = { idVacante : idVacante, aplicante: aplicante}
+
+    const onSubmit = async (e) => {
         e.preventDefault()
-        console.log(aplicante);
+        const b = { idVacante : idVacante, aplicante: aplicante}
+        const body = JSON.stringify(b)
+        const request = await fetch(
+             'http://localhost:8000/create/createApplier.php',
+             {method: 'POST', body: body}
+         ).catch(e => console.log(e))
+        const response = await request.json()
+        if(response){
+            alert("Listo, ya entraste a nuestro buzon de aplicantes");
+            window.location = "/"
+        }
     }
     return (
         <form className='vacante__form__parent' onSubmit={onSubmit}>
@@ -47,7 +59,7 @@ export default function VacanteForm(props) {
                 </div>
                 <div className='vacante__form__input'>
                     <label for='Telefono'>Tu Telefono</label>
-                    <input onChange={onChange} required='required' type='number' name='Telefono' id='Telefono'></input>
+                    <input onChange={onChange} required='required' type='number' name='Telefono' id='Telefono' min ="1111111111" max='9999999999'></input>
                 </div>
             </fieldset>
             <button

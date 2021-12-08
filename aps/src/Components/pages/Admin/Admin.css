@@ -31,18 +31,25 @@
 .adm__btn{
     width: 90%;
     margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 @media (min-width: 968px){
     .admin__contenedor{
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
         padding: 7rem 3.5rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
         
     }
     .adm__btn{
         width: 100%;
         margin-bottom: 0;
+        height: 10rem;
+        
     }
 }

@@ -155,13 +155,9 @@ function createApplier($applier){
         $applier->ApellidoM, $applier->Email,
         $applier->Telefono
     ]);
-
-    if($res){
-        //TODO
-    }
     
     cerrarBD($bd);
-
+    return $res;
 }
 
 function createOpening($vacante){
@@ -248,6 +244,19 @@ function fetchCardID($num){
     cerrarBD($bd);
     return $res;
 }
+
+function fetchApplierID($email){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "SELECT idAplicante FROM Aplicante
+        WHERE Email = ?"
+    );
+    $query->execute([$email]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    cerrarBD($bd);
+    return $res;
+}
+
 function fetchAddressID($direccion){
     $bd = conectarBD();
     $query = $bd->prepare(
@@ -422,6 +431,15 @@ function pivoteUsuarioDireccion($u, $t){
         "CALL pivoteUsuarioDireccion(?, ?)"
     );
     $res = $query->execute([$u, $t]);
+    cerrarBD($bd);
+    return $res;
+}
+function pivoteAplicanteVacante($v, $a){
+    $bd = conectarBD();
+    $query = $bd->prepare(
+        "CALL pivoteAplicanteVacante(?, ?)"
+    );
+    $res = $query->execute([$v, $a]);
     cerrarBD($bd);
     return $res;
 }

@@ -42,6 +42,11 @@ export default class Admin extends Component {
                             Ventas Mensuales
                         </btn>
                     </Link>
+                    {/* <Link to='/admin/careers/applier'>
+                        <btn className='btn btn-lg btn-primary adm__btn'>
+                            Solicitudes de trabajo
+                        </btn>
+                    </Link> */}
 
                 </div>
             </main>
