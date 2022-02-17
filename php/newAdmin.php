@@ -1,8 +1,8 @@
 <?php
 
-    $correo = "administrador@aps.com.mx";
+    $correo = /* correo */;
 
-    $Password = "Artefactos_2021";
+    $Password = /* password */;
 
     $pw = password_hash($Password, PASSWORD_DEFAULT);
 
