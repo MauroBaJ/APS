@@ -3,9 +3,7 @@
     function conectarBD(){
 
         $db = new PDO(
-            'mysql:host=localhost; dbname=aps',
-            'admonAPS',
-            'Artefactos_2021'
+//Database data
         );
         $db->query("set names utf8;");
         
